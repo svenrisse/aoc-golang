@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func a() {
+func b() {
 	file, err := os.Open("./input.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -39,18 +39,23 @@ func a() {
 	slices.Sort(a)
 	slices.Sort(b)
 
-	sum := 0
+	similarityScore := 0
 
 	for i := 0; i < len(a); i++ {
-		difference := a[i] - b[i]
-		if difference < 0 {
-			difference = -difference
+		current := a[i]
+		counter := 0
+	b:
+		for j := 0; j < len(b); j++ {
+			if b[j] == current {
+				counter++
+			}
+			if b[j] > current {
+				similarityScore += counter * current
+				counter = 0
+				break b
+			}
 		}
-		sum += difference
 	}
-	println(sum)
 
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
+	println(similarityScore)
 }
