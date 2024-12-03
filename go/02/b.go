@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func a() {
+func main() {
 	file := utils.ReadFile("./02/input.txt")
 
 	scanner := bufio.NewScanner(file)
@@ -24,7 +24,7 @@ func a() {
 
 		numbers := utils.StringArrayToInts(splitLine)
 
-		if isSafe(numbers) {
+		if isSafeWithDampener(numbers, false) {
 			countSafeReports++
 		}
 	}
@@ -32,17 +32,23 @@ func a() {
 	fmt.Println(countSafeReports)
 }
 
-func isSafee(input []int) bool {
+func isSafeWithDampener(input []int, dampenend bool) bool {
 	if input[0] < input[1] {
 		for i := 0; i < len(input)-1; i++ {
 			if input[i] > input[i+1] || input[i+1]-input[i] > 3 || input[i] == input[i+1] {
-				return false
+				if dampenend {
+					return false
+				}
+				return isSafeWithDampener(utils.RemoveElement(input, i+1), true)
 			}
 		}
 	} else {
 		for i := 0; i < len(input)-1; i++ {
 			if input[i] < input[i+1] || input[i]-input[i+1] > 3 || input[i] == input[i+1] {
-				return false
+				if dampenend {
+					return false
+				}
+				return isSafeWithDampener(utils.RemoveElement(input, i+1), true)
 			}
 		}
 	}

@@ -25,3 +25,8 @@ func StringArrayToInts(input []string) []int {
 	}
 	return ints
 }
+
+func RemoveElement(slice []int, index int) []int {
+	slice[index] = slice[len(slice)-1]
+	return slice[:len(slice)-1]
+}
