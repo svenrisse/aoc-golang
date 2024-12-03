@@ -2,10 +2,9 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
-	"sort"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -37,18 +36,21 @@ func main() {
 		b = append(b, numB)
 	}
 
-	sortAsc(a)
-	sortAsc(b)
+	slices.Sort(a)
+	slices.Sort(b)
 
-	fmt.Printf("%v", a)
+	sum := 0
+
+	for i := 0; i < len(a); i++ {
+		difference := a[i] - b[i]
+		if difference < 0 {
+			difference = -difference
+		}
+		sum += difference
+	}
+	println(sum)
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-}
-
-func sortAsc(a []int) {
-	sort.Slice(a, func(i int, j int) bool {
-		return a[i] < a[j]
-	})
 }
