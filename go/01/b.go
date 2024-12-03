@@ -1,24 +1,17 @@
 package main
 
 import (
+	utils "aoc2024"
 	"bufio"
 	"log"
-	"os"
 	"slices"
 	"strconv"
 	"strings"
 )
 
 func b() {
-	file, err := os.Open("./input.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func() {
-		if err = file.Close(); err != nil {
-			log.Fatal(err)
-		}
-	}()
+	file := utils.ReadFile("./input.txt")
+	defer file.Close()
 
 	var a []int
 	var b []int

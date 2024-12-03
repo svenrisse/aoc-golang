@@ -1,24 +1,17 @@
 package main
 
 import (
+	utils "aoc2024"
 	"bufio"
+	"fmt"
 	"log"
-	"os"
 	"slices"
-	"strconv"
 	"strings"
 )
 
-func a() {
-	file, err := os.Open("./input.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func() {
-		if err = file.Close(); err != nil {
-			log.Fatal(err)
-		}
-	}()
+func main() {
+	file := utils.ReadFile("./01/input.txt")
+	defer file.Close()
 
 	var a []int
 	var b []int
@@ -29,11 +22,11 @@ func a() {
 		var splitLine []string
 		splitLine = strings.Fields(scanner.Text())
 
-		numA, _ := strconv.Atoi(splitLine[0])
-		numB, _ := strconv.Atoi(splitLine[1])
+		numbers := utils.StringArrayToInts(splitLine)
+		fmt.Println(numbers)
 
-		a = append(a, numA)
-		b = append(b, numB)
+		a = append(a, numbers[0])
+		b = append(b, numbers[1])
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
