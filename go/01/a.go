@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func main() {
+func a() {
 	file := utils.ReadFile("./01/input.txt")
 	defer file.Close()
 
