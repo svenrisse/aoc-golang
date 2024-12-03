@@ -35,6 +35,9 @@ func a() {
 		a = append(a, numA)
 		b = append(b, numB)
 	}
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
 
 	slices.Sort(a)
 	slices.Sort(b)
@@ -49,8 +52,4 @@ func a() {
 		sum += difference
 	}
 	println(sum)
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
 }
