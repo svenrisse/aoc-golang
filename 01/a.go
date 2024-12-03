@@ -1,16 +1,22 @@
-package main
+package day1
 
 import (
-	utils "aoc2024"
 	"bufio"
 	"fmt"
 	"log"
+	"os"
 	"slices"
 	"strings"
+
+	"github.com/svenrisse/aoc2024/utils"
 )
 
 func a() {
-	file := utils.ReadFile("./01/input.txt")
+	file, err := os.Open("./input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	defer file.Close()
 
 	var a []int

@@ -2,17 +2,8 @@ package utils
 
 import (
 	"log"
-	"os"
 	"strconv"
 )
-
-func ReadFile(path string) *os.File {
-	file, err := os.Open(path)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return file
-}
 
 func StringArrayToInts(input []string) []int {
 	ints := make([]int, len(input))
@@ -24,9 +15,4 @@ func StringArrayToInts(input []string) []int {
 		ints[index] = i
 	}
 	return ints
-}
-
-func RemoveElement(slice []int, index int) []int {
-	slice[index] = slice[len(slice)-1]
-	return slice[:len(slice)-1]
 }

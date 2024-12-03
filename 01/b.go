@@ -1,16 +1,19 @@
-package main
+package day1
 
 import (
-	utils "aoc2024"
 	"bufio"
 	"log"
+	"os"
 	"slices"
 	"strconv"
 	"strings"
 )
 
 func b() {
-	file := utils.ReadFile("./input.txt")
+	file, err := os.Open("./input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer file.Close()
 
 	var a []int
