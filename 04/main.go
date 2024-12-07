@@ -10,6 +10,18 @@ func solveA(g Grid) int {
 	return count
 }
 
+func solveB(g Grid) int {
+	count := 0
+
+	for _, p := range g.allPos('A') {
+		if g.isCross(p) {
+			count += 1
+		}
+	}
+
+	return count
+}
+
 type Coord struct {
 	l, r int
 }
@@ -60,4 +72,14 @@ func (g Grid) runeAtPos(pos Coord) rune {
 		return ' '
 	}
 	return []rune(g[pos.l])[pos.r]
+}
+
+func (g Grid) isCross(pos Coord) bool {
+	ul := g.runeAtPos(pos.add(Coord{-1, -1}))
+	ur := g.runeAtPos(pos.add(Coord{-1, 1}))
+	ll := g.runeAtPos(pos.add(Coord{1, -1}))
+	lr := g.runeAtPos(pos.add(Coord{1, 1}))
+
+	return (ul == 'M' && lr == 'S' || ul == 'S' && lr == 'M') &&
+		(ur == 'M' && ll == 'S' || ur == 'S' && ll == 'M')
 }

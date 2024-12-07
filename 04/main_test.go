@@ -62,3 +62,13 @@ func TestSolveA(t *testing.T) {
 	result := solveA(grid)
 	assert.Equal(t, 2517, result)
 }
+
+func TestSolveBExample(t *testing.T) {
+	assert.Equal(t, 9, solveB(example))
+}
+
+func TestSolveB(t *testing.T) {
+	grid := Grid(utils.LoadStrings("input.txt"))
+	result := solveB(grid)
+	assert.Equal(t, 1960, result)
+}
